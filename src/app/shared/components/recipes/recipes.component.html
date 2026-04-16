@@ -1,0 +1,71 @@
+<hr>
+<h2 class="text-center text-danger mb-2">3 Recipes Task</h2>
+<div class="row">
+    <div class="col-md-6 mb-4 mb-md-0 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Recipe</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="name">Recipe Name</label>
+                        <input #nameControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="cuisine">Cuisine</label>
+                        <input #cuisineControl type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredients</label>
+                    <textarea rows="3" #ingredientsControl type="text" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Instructions</label>
+                    <textarea rows="3" #instructionsControl type="text" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Recipe Image URL</label>
+                    <input #imageControl type="text" class="form-control">
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddRecipe()" class="btn btn-sm btn-block btn-info">Add
+                    Recipe</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateRecipe()" class="btn btn-sm btn-block btn-info">Update
+                    Recipe</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row recipeContainer" *ngIf="recipesArr.length > 0; else noRecipe">
+    <div *ngFor="let recipe of recipesArr; trackby: trackByFun" class="col-md-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>{{recipe.name}}</h3>
+                <strong class="text-success">{{recipe.cuisine}}</strong>
+            </div>
+            <div class="card-body">
+                <figure>
+                    <img class="w-100" [src]="recipe.image" alt="RecipeImage" title="RecipeImage">
+                    <figcaption>
+                        <div>
+                            <h5 class="text-danger">Ingredients:</h5>
+                            <p>{{recipe.ingredients}}</p>
+                        </div>
+                        <div>
+                            <h5 class="text-danger">Instructions:</h5>
+                            <p>{{recipe.instructions}}</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button (click)="onEdit(recipe)" class="btn btn-sm btn-info">EDIT</button>
+                            <button (click)="onRemove(recipe.recipeID)" class="btn btn-sm btn-danger">REMOVE</button>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noRecipe>
+    <p class="alert alert-warning">No Recipe Added Yet!!!</p>
+</ng-template>

@@ -1,0 +1,95 @@
+<hr>
+<h2 class="text-center text-danger mb-2">4 Users Task</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>Add User</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input #firstNameControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input #middleNameControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input #lastNameControl type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input #emailControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input #usernameControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input #passwordControl type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input #phoneControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input #ageControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate">BirthDate</label>
+                        <input #birthDateControl type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image URL</label>
+                    <input #imageControl type="string" class="form-control">
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddUser()" class="btn btn-sm btn-block btn-info">Add
+                    User</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateUser()" class="btn btn-sm btn-block btn-info">Update User</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="usersArr.length > 0; else noUser" class="row userContainer">
+    <div *ngFor="let user of usersArr; trackby: trackByFun" class="col-md-4 mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>{{user.firstName}} {{user.middleName}} {{user.lastName}}</h3>
+            </div>
+            <div class="card-body">
+                <figure>
+                    <img class="w-100" [src]="user.image" alt="UsersIcon" title="UsersIcon">
+                    <figcaption>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Email- </strong>{{user.email}}</li>
+                            <li class="list-group-item"><strong>Username- </strong>{{user.username}}</li>
+                            <li class="list-group-item"><strong>Password- </strong>{{user.password}}</li>
+                            <li class="list-group-item"><strong>Phone- </strong>{{user.phone}}</li>
+                            <li class="list-group-item"><strong>Age- </strong>{{user.age}}</li>
+                            <li class="list-group-item"><strong>BirthDate- </strong>{{user.birthDate}}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between mt-2">
+                            <button  (click)="onEdit(user)" class="btn btn-sm btn-info">Edit</button>
+                            <button (click)="onRemove(user.userID)" class="btn btn-sm btn-danger">Remove</button>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noUser>
+    <p class="alert alert-warning">No Users Added Yet!!!</p>
+</ng-template>

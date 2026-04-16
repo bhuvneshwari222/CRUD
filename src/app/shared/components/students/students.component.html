@@ -1,0 +1,72 @@
+<hr>
+<h2 class="text-center text-danger mb-2">2 Students Task</h2>
+<div class="row">
+    <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Student</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="fName">First Name</label>
+                    <input #fnameControl type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="lName">Last Name</label>
+                    <input #lnameControl type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input #emailControl type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact</label>
+                    <input #contactControl type="text" class="form-control">
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddStudent()" class="btn btn-sm btn-info btn-block">Add Student</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateStudent()" class="btn btn-sm btn-info btn-block">Update Student</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Student Details</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="studArr.length > 0; else noStudent">
+                        <tr *ngFor="let stud of studArr; let i= index; trackBy: trackByFun">
+                            <td>{{i+1}}</td>
+                            <td>{{stud.fname}} {{stud.lname}}</td>
+                            <td>{{stud.email}}</td>
+                            <td>{{stud.contact}}</td>
+                            <td>
+                                <i (click)="onEditStd(stud)" class="fa-solid fa-pen-to-square fa-2x text-info mr-3 text-align-center"
+                                    role="button"></i>
+                            </td>
+                            <td>
+                                <i (click)="onRemove(stud.stdID)" class="fa-solid fa-trash-can fa-2x text-danger text-align-center" role="button"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <ng-template #noStudent>
+            <p class="alert alert-info">No Student is added Yet!!!!</p>
+        </ng-template>
+    </div>
+</div>
