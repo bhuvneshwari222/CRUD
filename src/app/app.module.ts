@@ -10,6 +10,8 @@ import { PostsComponent } from './shared/components/posts/posts.component';
 import { ProductsComponent } from './shared/components/products/products.component';
 import { CartsComponent } from './shared/components/carts/carts.component';
 import { EmployeesComponent } from './shared/components/employees/employees.component';
+import { BooksComponent } from './shared/components/books/books.component';
+import { MoviesComponent } from './shared/components/movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { EmployeesComponent } from './shared/components/employees/employees.comp
     PostsComponent,
     ProductsComponent,
     CartsComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    BooksComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule

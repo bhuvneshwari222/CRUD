@@ -1,0 +1,62 @@
+<hr>
+<h2 class="text-center text-danger mb-2">10 Movies CRUD</h2>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Movie</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input #titleControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <input #ratingControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image">Movie Image</label>
+                    <input #imageControl type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea rows="3" #descriptionControl type="text" class="form-control"></textarea>
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddMovie()" class="btn btn-sm btn-block btn-info">Add
+                    Movie</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateMovie()" class="btn btn-sm btn-block btn-info">Update
+                    Movie</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="moviesArr.length > 0; else noMovie" class="row movieContainer">
+    <div *ngFor="let movie of moviesArr; trackBy: trackByFun" class="col-md-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between">
+                <h3>{{movie.title}}</h3>
+                <strong class="text-success">{{movie.rating}}<i class="fa-solid fa-star text-warning"></i></strong>
+            </div>
+            <div class="card-body p-0">
+                <figure>
+                    <img [src]="movie.image" alt="movieImage" title="movieImage">
+                    <figcaption>
+                        <p>{{movie.description}}</p>
+                        <div class="d-flex justify-content-between mt-2">
+                            <button (click)="onEdit(movie)" class="btn btn-sm btn-info">Edit</button>
+                            <button (click)="onRemove(movie.movieID)" class="btn btn-sm btn-danger">Remove</button>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noMovie>
+    <p class="alert alert-info">No Movie Is Added Yet!!!</p>
+</ng-template>
