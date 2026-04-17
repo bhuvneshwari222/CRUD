@@ -7,6 +7,9 @@ import { StudentsComponent } from './shared/components/students/students.compone
 import { RecipesComponent } from './shared/components/recipes/recipes.component';
 import { UsersComponent } from './shared/components/users/users.component';
 import { PostsComponent } from './shared/components/posts/posts.component';
+import { ProductsComponent } from './shared/components/products/products.component';
+import { CartsComponent } from './shared/components/carts/carts.component';
+import { EmployeesComponent } from './shared/components/employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { PostsComponent } from './shared/components/posts/posts.component';
     StudentsComponent,
     RecipesComponent,
     UsersComponent,
-    PostsComponent
+    PostsComponent,
+    ProductsComponent,
+    CartsComponent,
+    EmployeesComponent
   ],
   imports: [
     BrowserModule

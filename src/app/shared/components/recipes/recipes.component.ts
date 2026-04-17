@@ -31,7 +31,7 @@ export class RecipesComponent implements OnInit {
       image: this.imageControl.nativeElement.value,
       recipeID: Date.now.toString()
     }
-    this.recipesArr.push(newrecipe);
+    this.recipesArr.unshift(newrecipe);
     this.nameControl.nativeElement.value='';
     this.cuisineControl.nativeElement.value='';
     this.ingredientsControl.nativeElement.value='';

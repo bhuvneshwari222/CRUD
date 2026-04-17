@@ -1,0 +1,134 @@
+<hr>
+<h2 class="text-center text-danger mb-2">6 Employee CRUD</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Employee</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="name">Employee Name</label>
+                        <input #nameControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input #emailControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">phone</label>
+                        <input #phoneControl type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input #ageControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input #cityControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input #salaryControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <select #positionControl type="text" class="form-control">
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="UI Designer">UI Designer</option>
+                        <option value="UX Designer">UX Designer</option>
+                        <option value="HR Manager">HR Manager</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="Financial Analyst">Financial Analyst</option>
+                        <option value="Marketing Executive">Marketing Executive</option>
+                        <option value="Sales Executive">Sales Executive</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Team Lead">Team Lead</option>
+                        <option value="Customer Support Executive">Customer Support Executive</option>
+                        <option value="Operations Manager">Operations Manager</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select #departmentControl type="text" class="form-control">
+                            <option value="IT">IT</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Design">Design</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Customer Support">Customer Support</option>
+                            <option value="Management">Management</option>
+                            <option value="Research & Development">Research & Development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select #genderControl type="text" class="form-control">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="isActive">Is Active?</label>
+                        <select #isActiveControl type="text" class="form-control">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="joiningDate">Joining Date</label>
+                        <input #joiningDateControl type="date" class="form-control">
+                    </div>
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddEmployee()" class="btn btn-sm btn-block btn-info">Add
+                    Employee</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateEmployee()" class="btn btn-sm btn-block btn-info">Update
+                    Employee</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="employeesArr.length > 0; else noEmployee" class="row employeeContainer">
+    <div *ngFor="let employee of employeesArr; trackBy: trackByFun" class="col-md-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>{{employee.name}}</h3>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Email- </strong>{{employee.email}}</li>
+                    <li class="list-group-item"><strong>Phone- </strong>{{employee.phone}}</li>
+                    <li class="list-group-item"><strong>Joining Date- </strong>{{employee.joiningDate}}</li>
+                    <li class="list-group-item"><strong>Position- </strong>{{employee.position}}</li>
+                    <li class="list-group-item"><strong>Department- </strong>{{employee.department}}</li>
+                    <li class="list-group-item"><strong>Is Active- </strong>{{employee.isActive}}</li>
+                    <li class="list-group-item"><strong>City- </strong>{{employee.city}}</li>
+                    <li class="list-group-item"><strong>Salary- </strong>{{employee.salary}}</li>
+                    <li class="list-group-item"><strong>Age- </strong>{{employee.age}}</li>
+                    <li class="list-group-item"><strong>Gender- </strong>{{employee.gender}}</li>
+                </ul>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <button (click)="onEdit(employee)" class="btn btn-sm btn-info">Edit</button>
+                <button (click)="onRemove(employee.employeeID)" class="btn btn-sm btn-danger">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noEmployee>
+    <p class="alert alert-info">No Employee Added Yet!!!</p>
+</ng-template>

@@ -1,0 +1,21 @@
+.productContainer .card-body {
+    position: relative;
+}
+
+.productContainer .card-body figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding: 15px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all .4s ease-in-out;
+}
+
+.productContainer .card-body:is(:hover, :active, :focus) figcaption {
+    transform: translateY(0%);
+    opacity: 1;
+}

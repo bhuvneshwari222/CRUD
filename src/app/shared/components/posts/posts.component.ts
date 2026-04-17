@@ -55,4 +55,8 @@ export class PostsComponent implements OnInit {
     this.contentControl.nativeElement.value = '';
     this.isInEditMode = false;
   }
+
+  trackByFun(index: number, post: Ipost){
+      return post.postID;
+    }
 }

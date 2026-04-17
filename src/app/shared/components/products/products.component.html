@@ -1,0 +1,85 @@
+<hr>
+<h2 class="text-center text-danger mb-2">6 Product CRUD</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Product</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="title">Product title</label>
+                        <input #titleControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input #categoryControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <input #ratingControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea rows="3" #descriptionControl type="text" class="form-control"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input #priceControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="discountPercentage">DiscountPercentage</label>
+                        <input #discountPercentageControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input #stockControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image Url</label>
+                    <input #imageControl type="text" class="form-control">
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddProduct()" class="btn btn-sm btn-block btn-info">Add
+                    Product</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateProduct()" class="btn btn-sm btn-block btn-info">Update
+                    Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="productArr.length > 0; else noProduct" class="row productContainer">
+    <div *ngFor="let product of productArr; trackBy: trackByFun" class="col-md-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>{{product.title}}</h3>
+            </div>
+            <div class="card-body">
+                <img [src]="product.image" alt="ProductImage" title="ProductImage">
+                <figcaption>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Price- </strong>{{product.price}}</li>
+                        <li class="list-group-item"><strong>Category- </strong>{{product.category}}</li>
+                        <li class="list-group-item"><strong>DiscountPercentage- </strong>{{product.discountPercentage}}
+                        </li>
+                        <li class="list-group-item"><strong>Rating- </strong>{{product.rating}}</li>
+                        <li class="list-group-item"><strong>Stock- </strong>{{product.stock}}</li>
+                        <li class="list-group-item"><strong>Description- </strong>{{product.description}}</li>
+                    </ul>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button (click)="onEdit(product)" class="btn btn-sm btn-info">Edit</button>
+                        <button (click)="onRemove(product.productID)" class="btn btn-sm btn-danger">Remove</button>
+                    </div>
+                </figcaption>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProduct>
+    <p class="alert alert-info">No Product Added Yet!!!</p>
+</ng-template>

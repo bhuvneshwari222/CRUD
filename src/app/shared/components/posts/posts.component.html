@@ -1,5 +1,5 @@
 <hr>
-<h2 class="text-center text-danger mb-2">5 Post Task</h2>
+<h2 class="text-center text-danger mb-2">5 Post CRUD</h2>
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <div class="card">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="row" *ngIf="postArr.length > 0; else noPost">
-    <div *ngFor="let post of postArr" class="col-md-4 mt-4">
+    <div *ngFor="let post of postArr; trackby: trackByFun" class="col-md-4 mt-4">
         <div class="card h-100">
             <div class="card-header">
                 <h3>{{post.title}}</h3>

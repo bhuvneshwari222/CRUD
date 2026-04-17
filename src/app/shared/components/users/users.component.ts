@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
       image: this.imageControl.nativeElement.value,
       userID: Date.now.toString()
     }
-    this.usersArr.push(newUser);
+    this.usersArr.unshift(newUser);
     this.firstNameControl.nativeElement.value = '';
     this.middleNameControl.nativeElement.value = '';
     this.lastNameControl.nativeElement.value = '';

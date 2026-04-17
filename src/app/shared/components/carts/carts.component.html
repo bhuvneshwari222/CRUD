@@ -1,0 +1,80 @@
+<hr>
+<h2 class="text-center text-danger mb-2">7 Carts CRUD</h2>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h3>Add Cart</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="title">Cart title</label>
+                        <input #titleControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input #priceControl type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input #quantityControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <label for="total">total</label>
+                        <input #totalControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="discountPercentage">DiscountPercentage</label>
+                        <input #discountPercentageControl type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="discountedTotal">DiscountedTotal</label>
+                        <input #discountedTotalControl type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="thumbnail">Image Url</label>
+                    <input #thumbnailControl type="text" class="form-control">
+                </div>
+                <button *ngIf="!isInEditMode" (click)="onAddCart()" class="btn btn-sm btn-block btn-info">Add
+                    Cart</button>
+                <button *ngIf="isInEditMode" (click)="onUpdateCart()" class="btn btn-sm btn-block btn-info">Update
+                    Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="cartsArr.length > 0; else noCart" class="row cartsContainer">
+    <div *ngFor="let cart of cartsArr; trackBy: trackByFun" class="col-md-4 mt-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h3>{{cart.title}}</h3>
+            </div>
+            <div class="card-body">
+                <img [src]="cart.thumbnail" alt="CartImage" title="CartImage">
+                <figcaption>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Price- </strong>{{cart.price}}</li>
+                        <li class="list-group-item"><strong>Quantity- </strong>{{cart.quantity}}</li>
+                        <li class="list-group-item"><strong>DiscountPercentage- </strong>{{cart.discountPercentage}}
+                        </li>
+                        <li class="list-group-item"><strong>discountedTotal- </strong>{{cart.discountedTotal}}</li>
+                        <li class="list-group-item"><strong>Total- </strong>{{cart.total}}</li>
+                    </ul>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button (click)="onEdit(cart)" class="btn btn-sm btn-info">Edit</button>
+                        <button (click)="onRemove(cart.cartID)" class="btn btn-sm btn-danger">Remove</button>
+                    </div>
+                </figcaption>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noCart>
+    <p class="alert alert-info">No Cart is Added Yet!!!</p>
+</ng-template>
