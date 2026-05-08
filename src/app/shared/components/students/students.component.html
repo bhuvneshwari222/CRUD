@@ -4,7 +4,9 @@
     <div class="col-md-4 mb-4 mb-md-0">
         <div class="card">
             <div class="card-header">
-                <h3>Add Student</h3>
+                <h3>
+                    {{isInEditMode ? 'Update Student' : 'Add Student'}}
+                    </h3>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -23,7 +25,7 @@
                     <label for="contact">Contact</label>
                     <input #contactControl type="text" class="form-control">
                 </div>
-                <button *ngIf="!isInEditMode" (click)="onAddStudent()" class="btn btn-sm btn-info btn-block">Add Student</button>
+                <button *ngIf="!isInEditMode" (click)="onAddStudent(fnameControl,lnameControl,emailControl,contactControl)" class="btn btn-sm btn-info btn-block">Add Student</button>
                 <button *ngIf="isInEditMode" (click)="onUpdateStudent()" class="btn btn-sm btn-info btn-block">Update Student</button>
             </div>
         </div>

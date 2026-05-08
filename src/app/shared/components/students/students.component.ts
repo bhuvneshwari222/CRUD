@@ -17,8 +17,13 @@ export class StudentsComponent implements OnInit {
   @ViewChild('emailControl') emailControl!: ElementRef;
   @ViewChild('contactControl') contactControl!: ElementRef;
 
-  onAddStudent() {
-    let newStud: Istudent = {
+  onAddStudent(ele1:HTMLInputElement,ele2:HTMLInputElement,ele3:HTMLInputElement,ele4:HTMLInputElement) {
+    let val1 = ele1.value;
+    let val2 = ele2.value;
+    let val3 = ele3.value;
+    let val4 = ele4.value;
+    if(val1.length > 0 && val2.length && val3.length && val4.length){
+      let newStud: Istudent = {
       fname: this.fnameControl.nativeElement.value,
       lname: this.lnameControl.nativeElement.value,
       email: this.emailControl.nativeElement.value,
@@ -26,6 +31,7 @@ export class StudentsComponent implements OnInit {
       stdID: Date.now.toString()
     }
     this.studArr.push(newStud);
+    }
   }
 
   onRemove(id: string){

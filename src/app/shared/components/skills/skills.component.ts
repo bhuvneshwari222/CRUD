@@ -21,11 +21,13 @@ export class SkillsComponent implements OnInit {
   }
   onSkillAdd(ele: HTMLInputElement) {
     let val = ele.value;
-    let newSkill: ISkills = {
+    if(val.length > 0){
+      let newSkill: ISkills = {
       todoItem: val,
       todoID: Date.now().toString()
     }
     this.skillsArr.push(newSkill);
+    }
   }
 
   onRemove(id: string) {
